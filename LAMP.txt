@@ -75,10 +75,10 @@ INSERT INTO phonebook (ID, MEMO, NAME, PHONE, EMAIL, DATE) VALUES
 
 SELECT * FROM phonebook;
 
-CREATE USER 'blackrose'@'localhost' IDENTIFIED WITH mysql_native_password BY '@pril8TH';
-CREATE USER 'blackrose'@'%' IDENTIFIED WITH mysql_native_password BY '@pril8TH';
-grant CREATE,INSERT,SELECT,DELETE,UPDATE on lab5.* to blackrose;
-grant CREATE,INSERT,SELECT,DELETE,UPDATE on lab5.* to blackrose@localhost;
+CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your-password';
+CREATE USER 'username'@'%' IDENTIFIED WITH mysql_native_password BY 'your-password';
+grant CREATE,INSERT,SELECT,DELETE,UPDATE on lab5.* to username;
+grant CREATE,INSERT,SELECT,DELETE,UPDATE on lab5.* to username@localhost;
 exit
 
 adduser username
@@ -88,8 +88,8 @@ nano /var/www/html/phonebook/index.php
 
 <?php
 $db_host = "localhost";
-$db_username = "blackrose";
-$db_pass = "@pril8TH";
+$db_username = "username";
+$db_pass = "your-password";
 $db_name = "lab5";
 $conn = new mysqli($db_host, $db_username, $db_pass,$db_name);
 if ($conn->connect_error) {
