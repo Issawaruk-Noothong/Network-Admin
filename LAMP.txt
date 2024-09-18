@@ -1,0 +1,117 @@
+sudo apt update
+sudo apt upgrade
+
+sudo apt install apche2
+sudo systemctl enable apache2
+sudo systemctl start apache2
+sudo systemctl status apache2
+
+sudo apt install mysql-server-8.0
+sudo mysql_secure_installation
+
+sudo systemctl enable mysql
+sudo systemctl start mysql
+sudo systemctl status mysql
+
+sudo apt install php libapache2-mod-php php-mysql
+
+sudo nano /var/www/html/info.php
+
+<?php
+phpinfo();
+?>
+
+http://ip-address/info.php
+
+sudo systemctl restart apache2
+
+************************************
+แก้ปัญหาเฉพาะหน้า Result: oom-kill
+
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+sudo nano /etc/mysql/my.cnf
+
+[mysqld]
+innodb_buffer_pool_size = 64M
+key_buffer_size = 16M
+max_connections = 20
+
+sudo systemctl restart mysql
+
+sudo systemctl status mysql
+************************************
+
+create database lab5;
+
+show databases;
+
+use lab5;
+
+show tables;
+
+use lab5;
+
+CREATE TABLE phonebook(
+    NAME VARCHAR(25),
+    EMAIL VARCHAR(30),
+    PHONE VARCHAR(12),
+    MEMO TEXT,
+    date DATE NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(ID));
+);
+
+INSERT INTO phonebook (ID, MEMO, NAME, PHONE, EMAIL, DATE) VALUES
+(1, 'Jenny Daniels', 'Jenny', '408 555 5625', 'jdaniels@testbed.org', '1997-12-11'),
+(2, 'Sam Carter', 'Sam', '408 555 4798', 'scarter@testbed.org', '1979-06-30'),
+(3, 'Tod Morris', 'Tod', '408 555 3106', 'tmorris@testbed.org', '1997-08-01'),
+(4, 'Tim Fillip', 'Tim', '408 555 9187', 'tfillip@testbed.org', '1988-05-23'),
+(5, 'Max Daniels', 'Max', '408 555 5625', 'mdaniels@testbed.org', '2001-10-15');
+
+SELECT * FROM phonebook;
+
+CREATE USER 'blackrose'@'localhost' IDENTIFIED WITH mysql_native_password BY '@pril8TH';
+CREATE USER 'blackrose'@'%' IDENTIFIED WITH mysql_native_password BY '@pril8TH';
+grant CREATE,INSERT,SELECT,DELETE,UPDATE on lab5.* to blackrose;
+grant CREATE,INSERT,SELECT,DELETE,UPDATE on lab5.* to blackrose@localhost;
+exit
+
+adduser username
+
+mkdir /var/www/html/phonebook/
+nano /var/www/html/phonebook/index.php
+
+<?php
+$db_host = "localhost";
+$db_username = "blackrose";
+$db_pass = "@pril8TH";
+$db_name = "lab5";
+$conn = new mysqli($db_host, $db_username, $db_pass,$db_name);
+if ($conn->connect_error) {
+die("Connection failed: " . $conn->connect_error);
+}
+$result = mysqli_query($conn,"SELECT * FROM phonebook");
+if (!$result) {
+echo("<P>Error performing query: " . mysql_error() . "</P>");
+exit();
+}
+echo '<table width=100% cellpadding=10 cellspacing=0 border=1>';
+echo '<tr><td><b>ID</b></td><td><b>Name</b></td><td><b>Email</b></td>';
+echo '<td><b>Phone</b></td><td><b>Memo</b></td><td><b>Date</b></td></tr>';
+while ( $row = mysqli_fetch_array($result) ) {
+echo '<tr>';
+echo '<td>' .$row[0]. '</td>';
+echo '<td>' .$row[1]. '</td>';
+echo '<td>' .$row[2]. '</td>';
+echo '<td>' .$row[3]. '</td>';
+echo '<td>' .$row[4]. '</td>';
+echo '<td>' .$row[5]. '</td>';
+echo '</tr>';
+}
+echo '</table>';
+?>
