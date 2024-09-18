@@ -1,0 +1,55 @@
+CREATE TABLE phonebook(name VARCHAR(25),
+email VARCHAR(30),
+phone VARCHAR(12),
+memo TEXT,
+date DATE NOT NULL,
+id INT NOT NULL AUTO_INCREMENT,
+PRIMARY KEY(ID));
+
+show tables;
+
+DESC phonebook;
+
+INSERT INTO phonebook(name,email,phone,memo,date)VALUE(
+'chatchawin',
+'chatchawin@gmail.com',
+'0881234567',
+'Mr.Chatchawin',
+'1999-11-11');
+
+INSERT INTO phonebook(memo,name,phone,email,date)VALUE(
+'Jenny Daniels',
+'Jenny',
+'408 555 5625',
+'jdaniels@testbed.org',
+'1997-12-11');
+
+INSERT INTO phonebook(memo,name,phone,email,date)VALUE(
+'Sam Carter',
+'Sam',
+'408 555 4798',
+'scarter@testbed.org',
+'1979-06-30');
+
+INSERT INTO phonebook(memo,name,phone,email,date)VALUE(
+'Tod Morris',
+'Tod',
+'408 555 3106',
+'jdaniels@testbed.org',
+'1997-08-01');
+
+INSERT INTO phonebook(memo,name,phone,email,date)VALUE(
+'Tim Fillip',
+'Tim',
+'408 555 9187',
+'tfillip@testbed.org',
+'1988-05-23');
+
+INSERT INTO phonebook(memo,name,phone,email,date)VALUE(
+'Max Daniels',
+'Max',
+'408 555 5625',
+'mdaniels@testbed.org',
+'2001-10-15');
+
+Select * From phonebook;
