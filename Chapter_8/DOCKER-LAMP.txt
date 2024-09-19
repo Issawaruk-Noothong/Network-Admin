@@ -1,0 +1,43 @@
+sudo apt update
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+sudo apt install docker-compose
+
+git clone https://github.com/jcavat/docker-lamp.git
+cd docker-lamp
+nano docker-compose.yml
+==================================================================
+version: '3.8'
+
+services:
+  web:
+    image: php:7.4-apache
+    container_name: lamp_web
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - "8080:80"
+    networks:
+      - lamp_network
+
+  db:
+    image: mysql:5.7
+    container_name: lamp_db
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'your-password'
+      MYSQL_DATABASE: mydatabases
+      MYSQL_USER: username
+      MYSQL_PASSWORD: 'your-password'
+    ports:
+      - "3307:3306"
+    networks:
+      - lamp_network
+
+networks:
+  lamp_network:
+    driver: bridge
+==================================================================
+docker-compose up -d
