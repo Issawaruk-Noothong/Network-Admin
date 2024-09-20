@@ -37,3 +37,6 @@ services:
       PMA_HOST: db
 ==================================================================
 docker-compose up -d
+ALTER USER 'root'@'localhost' IDENTIFIED BY '@pril8TH';
+flush privileges;
+exit
