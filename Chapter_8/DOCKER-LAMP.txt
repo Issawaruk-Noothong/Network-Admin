@@ -47,6 +47,8 @@ docker-compose up -d
 
 docker-compose exec <service_name> <command>
 Example : docker-compose exec db mysql -u root -p@pril8TH
+==================================================================
+MySQL
 ALTER USER 'root'@'localhost' IDENTIFIED BY '@pril8TH';
 flush privileges;
 exit
@@ -101,6 +103,13 @@ docker-php-ext-install mysqli
 docker-php-ext-enable mysqli
 exit
 service apache2 restart
+docker-compose exec db mysql -u root -p@pril8TH (run in folder /docker-lamp)
+==================================================================
+MySQL
+ALTER USER 'root'@'localhost' IDENTIFIED BY '@pril8TH';
+flush privileges;
+exit
+==================================================================
 -----------------
 nano path to /docker-lamp/docker-compose.yml
 -----------------
