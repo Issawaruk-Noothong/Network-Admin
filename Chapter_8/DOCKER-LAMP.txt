@@ -26,16 +26,22 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: '@pril8TH'
       MYSQL_DATABASE: lampdb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: '@pril8TH'
     volumes:
       - ./mysql_data:/var/lib/mysql
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
       - "8080:80"
-    depends_on:
-      - db
     environment:
       PMA_HOST: db
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:
 ==================================================================
 docker-compose up -d
 
