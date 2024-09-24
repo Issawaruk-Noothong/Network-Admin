@@ -58,6 +58,40 @@ nano path to /docker-lamp/www/index.php
 phpinfo();
 ?>
 -----------------
+Show Data in Databases table name Person.
+-----------------
+<?php
+$servername = "db";  // ชื่อ service ของ MySQL ใน docker-compose.yml
+$username = "root";
+$password = "@pril8TH";
+$dbname = "lampdb";
+
+// สร้างการเชื่อมต่อ
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// ตรวจสอบการเชื่อมต่อ
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query ดึงข้อมูลจากตาราง Person
+$sql = "SELECT * FROM Person";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // แสดงข้อมูลจากแต่ละ row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["name"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+// ปิดการเชื่อมต่อ
+$conn->close();
+?>
+Fatal error: Uncaught Error: Class "mysqli" not found in /var/www/html/index.php:8 Stack trace: #0 {main} thrown in /var/www/html/index.php on line 8
+-----------------
 nano path to /docker-lamp/docker-compose.yml
 -----------------
 version: '3.9'
