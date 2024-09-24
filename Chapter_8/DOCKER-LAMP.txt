@@ -24,7 +24,6 @@ services:
   db:
     image: mysql:8.1.0
     environment:
-      
       MYSQL_ROOT_PASSWORD: '@pril8TH'
       MYSQL_DATABASE: lampdb
     volumes:
