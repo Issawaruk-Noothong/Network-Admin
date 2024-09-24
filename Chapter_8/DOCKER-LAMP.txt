@@ -9,6 +9,8 @@ git clone https://github.com/jcavat/docker-lamp.git
 cd docker-lamp
 nano docker-compose.yml
 ==================================================================
+*PHP Login Form*
+-----------------
 version: '3.8'
 services:
   web:
@@ -41,3 +43,14 @@ docker-compose exec db mysql -u root -p@pril8TH
 ALTER USER 'root'@'localhost' IDENTIFIED BY '@pril8TH';
 flush privileges;
 exit
+==================================================================
+PHP 
+-----------------
+docker ps
+If you wanna delete old port, you must stop and delete.
+Command :docker stop/rm <container-id/names>
+Example :
+docker stop d76a14240588
+docker rm d76a14240588
+After that, you run new "docker-compose up -d" to start docker.
+==================================================================
