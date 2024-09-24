@@ -39,9 +39,8 @@ services:
 ==================================================================
 docker-compose up -d
 
-docker-compose exec -it <service_name> <command>
+docker-compose exec <service_name> <command>
 Example : docker-compose exec db mysql -u root -p@pril8TH
-
 ALTER USER 'root'@'localhost' IDENTIFIED BY '@pril8TH';
 flush privileges;
 exit
