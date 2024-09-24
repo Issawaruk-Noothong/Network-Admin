@@ -177,9 +177,9 @@ services:
     volumes:
       - ./www:/var/www/html
 -----------------
-docker ps
 If you wanna delete old port, you must stop and delete.
-Command :docker stop/rm <container-id/names>
+docker ps
+docker stop/rm <container-id/names>
 Example :
 docker stop d76a14240588
 docker rm d76a14240588
