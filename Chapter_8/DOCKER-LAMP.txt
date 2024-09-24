@@ -11,12 +11,12 @@ nano docker-compose.yml
 ==================================================================
 *PHP Login Form*
 -----------------
-version: '3.8'
+version: '3.9'
 services:
   web:
     image: php:8.2-apache
     ports:
-      - "80:80"
+      - "8001:80"
     depends_on:
       - db
     volumes:
