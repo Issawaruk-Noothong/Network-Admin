@@ -44,7 +44,25 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '@pril8TH';
 flush privileges;
 exit
 ==================================================================
-PHP 
+Just how PHP info.
+nano path to /docker-lamp/www/index.php
+-----------------
+<?php
+phpinfo();
+?>
+-----------------
+nano path to /docker-lamp/docker-compose.yml
+-----------------
+version: '3.9'
+
+services:
+  web:
+    image: php:7.4-apache
+    container_name: my-lamp-web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./www:/var/www/html
 -----------------
 docker ps
 If you wanna delete old port, you must stop and delete.
