@@ -67,7 +67,7 @@ $db_host = "localhost";
 $db_username = "root";
 $db_pass = "@pril8TH";
 $db_name = "lampdb";
-$conn = new mysqli($db_host, $db_username, $db_pass, $db_name);
+$conn = new mysqli('db', 'root', '@pril8TH', 'lampdb');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
