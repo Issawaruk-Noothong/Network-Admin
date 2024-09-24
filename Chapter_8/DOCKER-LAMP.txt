@@ -92,6 +92,16 @@ $conn->close();
 ?>
 Fatal error: Uncaught Error: Class "mysqli" not found in /var/www/html/index.php:8 Stack trace: #0 {main} thrown in /var/www/html/index.php on line 8
 -----------------
+Before show Data :
+docker ps
+docker exec -it <ชื่อ-container-php> /bin/bash
+apt-get update
+apt-get install -y libpng-dev libjpeg-dev
+docker-php-ext-install mysqli
+docker-php-ext-enable mysqli
+exit
+service apache2 restart
+-----------------
 nano path to /docker-lamp/docker-compose.yml
 -----------------
 version: '3.9'
