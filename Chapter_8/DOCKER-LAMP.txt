@@ -20,7 +20,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./html:/var/www/html
+      - ./www:/var/www/html
   db:
     image: mysql:8.1.0
     environment:
