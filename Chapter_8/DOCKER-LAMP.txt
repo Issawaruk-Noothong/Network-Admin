@@ -185,3 +185,40 @@ docker stop d76a14240588
 docker rm d76a14240588
 After that, you run new "docker-compose up -d" to start docker.
 ==================================================================
+Wordpress
+version: '3.9'
+services:
+  web:
+    image: php:8.2-apache
+    ports:
+      - "8001:80"
+    depends_on:
+      - db
+    volumes:
+      - ./www:/var/www/html
+  db:
+    image: mysql:8.1.0
+    environment:
+      MYSQL_ROOT_PASSWORD: '@pril8TH'
+      MYSQL_DATABASE: lampdb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: '@pril8TH'
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress_container
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: '@pril8TH'
+      WORDPRESS_DB_NAME: lampdb
+    volumes:
+      - wordpress_data:/var/www/html
+
+volumes:
+  wordpress_data:
+  db_data:
